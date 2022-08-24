@@ -1,0 +1,68 @@
+/* (A) TABS CONTAINER */
+.lm-tab,
+.lm-tab * {
+    box-sizing: border-box;
+}
+
+/* (B) HIDE CHECKBOX */
+.lm-tab input {
+    display: none;
+}
+
+/* (C) TAB LABEL */
+.lm-tab label {
+    /* (C1) DIMENSIONS */
+    position: relative;
+    /* required for (f2) position:absolute */
+    display: block;
+    width: 100%;
+    padding: 20px;
+
+    /* (C2) COSMETICS */
+    font-weight: 500;
+    color: #555;
+    background-image: linear-gradient(#fff, #efefef);
+	border: solid 1px #dbdbdb;
+    cursor: pointer;
+}
+
+/* (D) TAB CONTENT - HIDDEN BY DEFAULT */
+/* css animation will not work with auto height */
+/* this is why we use max-height instead */
+.lm-tab .lm-content {
+    background: #FFF;
+    overflow: hidden;
+    transition: max-height 0.3s;
+    max-height: 0;
+    padding-right: 20px;
+}
+
+.lm-tab .lm-content p {
+    padding: 15px;
+}
+
+/* (E) OPEN TAB ON CHECKED */
+.lm-tab input:checked~.lm-content {
+    max-height: unset;
+}
+
+/* (F) EXTRA - ADD ARROW INDICATOR */
+.lm-tab label::after {
+    /* (F1) RIGHT ARROW */
+    display: block;
+    padding: 10px;
+    content: "\25bc";
+
+    /* (F2) PLACE AT RIGHT SIDE */
+    position: absolute;
+    right: 10px;
+    top: 10px;
+
+    /* (F3) ANIMATED ARROW */
+    transition: all 0.4s;
+}
+
+/* (F4) ROTATE ARROW ON CHECKED */
+.lm-tab input:checked~label::after {
+    transform: rotate(-180deg);
+}
